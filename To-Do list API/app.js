@@ -12,3 +12,5 @@ mongoose.connect("mongodb+srv://ratul07:Manutd_20@ratul.cskiwek.mongodb.net/ratu
 })
 .then(() => console.log("MongoDB Atlas connected"))
 .catch(err => console.error("MongoDB connection error:", err));
+
+const todoSchema = 
