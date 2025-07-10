@@ -20,14 +20,14 @@ router.get("/", async (req, res) => {
         //filtering by completed status
         if (completed === "true") {
             filter.completed = true;
-        } else if (completed = "false") {
+        } else if (completed === "false") {
             filter.completed = false;
         }
 
         //filtering by logic
         if(sort === "asc") {
             sortOption.createdAt = 1;
-        } else if (sort = "desc") {
+        } else if (sort === "desc") {
             sortOption.createdAt = -1;
         }
         const todos = await Todo.find(filter)
@@ -49,7 +49,7 @@ router.get("/", async (req, res) => {
 });
 
 //get todos by id
-router.get("/todos/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
     try {
         const todo = await Todo.findById(req.params.id);
         if(!todo) return res.status(404).json({ message: "To-Do not found."});
@@ -60,7 +60,7 @@ router.get("/todos/:id", async (req, res) => {
 })
 
 //create a new todo
-router.post("/todos", async (req, res) => {
+router.post("/", async (req, res) => {
     const { title } = req.body;
     if(!title || typeof title !== "string" || title.trim().length < 3) {
         return res.status(400).json({ 
@@ -72,13 +72,13 @@ router.post("/todos", async (req, res) => {
 
     try {
         const newTodo = await todo.save();
-        res.status(201).json(newTodo);
+        res.status(201).json({ success: true, data: newTodo });
     } catch (error) {
-        res.status(400).json({ message: error.message});
+        res.status(400).json({ success: false, message: "Error message here" });
     }
 });
 
-router.put("/todos/:id", async (req, res) => {
+router.put("/:id", async (req, res) => {
     try {
         const todo = await Todo.findById(req.params.id);
         if(!todo) return res.status(404).json({ message: "To-Do not found" });
@@ -95,20 +95,20 @@ router.put("/todos/:id", async (req, res) => {
         if(req.body.completed !== undefined) todo.completed = req.body.completed;
 
         const updatedToDo = await todo.save();
-        res.json(updatedToDo);
+        res.json({ success: true, data: updatedToDo});
     } catch (error) {
         res.status(400).json({ message: error.message});
     }
 });
 
 //delete todo by id
-router.delete("/todos/:id", async (req, res) => {
+router.delete("/:id", async (req, res) => {
     try {
         const todo = await Todo.findByIdAndDelete(req.params.id);
         if(!todo) return res.status(404).json({ message: "To-Do not found" });
-        res.json({ message: "To-Do deleted" });
+        res.json({ success:true, message: "To-Do deleted" });
     } catch (error) {
-        res.status(500).json({ message: err.message });
+        res.status(500).json({ message: error.message });
     }
 });
 

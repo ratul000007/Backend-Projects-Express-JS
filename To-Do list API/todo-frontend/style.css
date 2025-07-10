@@ -1,0 +1,42 @@
+body {
+  font-family: sans-serif;
+  background: #f4f4f4;
+  padding: 40px;
+}
+
+.container {
+  max-width: 500px;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+#todo-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+#todo-title {
+  flex: 1;
+  padding: 8px;
+  font-size: 16px;
+}
+
+button {
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.todo-item {
+  background: #eee;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-left: 4px solid #007bff;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: gray;
+}
