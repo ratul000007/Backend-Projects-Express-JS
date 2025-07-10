@@ -7,7 +7,7 @@ const Todo = require("../models/Todo")
 //routes
 
 //get all todos
-app.get("/", async (req, res) => {
+router.get("/", async (req, res) => {
     try {
         const { completed, sort, page = 1, limit = 10 } = req.query;
         let filter = {};
