@@ -1,6 +1,12 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
+const authRoutes = require("./routes/authRoutes");
+const cookieParse = require("cookie-parser");
+
+app.use(cookieParse());
+
+app.use("/api", authRoutes);
 
 //Load env config
 dotenv.config();

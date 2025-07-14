@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Authorization</title>
+</head>
+<body>
+    <h1>User Auth Demo</h1>
+    <!-- Register -->
+    <h2>Register</h2>
+     <form id="registerForm">
+        <input type="text" placeholder="Name" name="name" required />
+         <input type="email" placeholder="Email" name="email" required />
+        <input type="password" placeholder="Password" name="password" required />
+        <button type="submit">Register</button>
+    </form>
+
+     <!-- Login -->
+    <h2>Login</h2>
+    <form id="loginForm">
+        <input type="email" placeholder="Email" name="email" required />
+        <input type="password" placeholder="Password" name="password" required />
+        <button type="submit">Login</button>
+    </form>
+    <!-- Profile -->
+    <h2>Profile</h2>
+        <button id="getProfile">Get Profile</button>
+        <pre id="profileData"></pre>
+
+    <!-- Logout -->
+    <button id="logoutBtn">Logout</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
