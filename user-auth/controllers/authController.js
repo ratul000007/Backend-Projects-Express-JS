@@ -42,6 +42,7 @@ exports.registerUser = async (req, res) => {
                 accessToken,
             });
     } catch (error) {
+        console.error("Register User Error:", error);
         res.status(500).json({ message: "Server error" });
     }
 };
@@ -90,6 +91,7 @@ exports.loginUser = async (req, res) => {
                 accessToken,
             });
     } catch (error) {
+        console.error("Login User Error:", error);
         res.status(500).json({ message: "Server error" });
     }
 }
