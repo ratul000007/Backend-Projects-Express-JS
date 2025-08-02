@@ -22,7 +22,7 @@ exports.getProductById = async (req, res) => {
 };
 
 // POST /api/products (Admin only)
-exports.createPoduct = async (req, res) => {
+exports.createProduct = async (req, res) => {
     try {
         const product = await Product.create(req.body);
         res.status(201).json(product);
