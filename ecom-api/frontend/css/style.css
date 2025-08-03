@@ -1,0 +1,81 @@
+/* styles.css */
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f2f2f2;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 2rem;
+  background: white;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  margin-top: 40px;
+}
+
+h1, h2, h3 {
+  text-align: center;
+  color: #333;
+}
+
+input, button, select {
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.product {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+}
+
+.cart-item {
+  border-bottom: 1px solid #ccc;
+  padding: 0.5rem 0;
+}
+
+nav {
+  background: #333;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  margin: 0 1rem;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.message {
+  background: #e7f4e4;
+  color: #2d662d;
+  padding: 10px;
+  border: 1px solid #a5d6a7;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}

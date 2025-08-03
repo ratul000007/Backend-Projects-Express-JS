@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Cart</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <h2>🛒 Your Cart</h2>
+  <div id="cart"></div>
+  <button id="checkout">Checkout</button>
+  <p><a href="index.html">← Back to Products</a></p>
+
+  <script type="module">
+    import { request } from "./js/api.js";
+
+    const token = localStorage.getItem("token");
+    const cartDiv = document.getElementById("cart");
+
+    const loadCart = async () => {
+      try {
+        const cart = await request("/cart", "GET", null, token);
+        if (cart.items.length === 0) {
+          cartDiv.innerHTML = "<p>Your cart is empty.</p>";
+          return;
+        }
+
+        cartDiv.innerHTML = cart.items.map(item => `
+          <div>
+            <b>${item.product.name}</b> - ${item.quantity} x $${item.product.price}
+            <button data-id="${item.product._id}">Remove</button>
+          </div>
+        `).join("");
+
+        cartDiv.addEventListener("click", async (e) => {
+          if (e.target.tagName === "BUTTON") {
+            const productId = e.target.dataset.id;
+            await request("/cart/remove", "POST", { productId }, token);
+            loadCart();
+          }
+        });
+      } catch (err) {
+        alert("Error loading cart: " + err.message);
+      }
+    };
+
+    document.getElementById("checkout").onclick = async () => {
+      try {
+        await request("/orders/checkout", "POST", null, token);
+        alert("Order placed!");
+        loadCart();
+      } catch (err) {
+        alert("Checkout error: " + err.message);
+      }
+    };
+
+    loadCart();
+  </script>
+</body>
+</html>
