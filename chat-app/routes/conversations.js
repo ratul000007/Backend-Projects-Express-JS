@@ -17,7 +17,7 @@ router.post('/', auth, async (req, res) => {
         res.json(conv);
     } catch (error) {
         console.error(error);
-        res.json(500).json({ message: 'Server Error' });
+        res.status(500).json({ message: 'Server Error' });
     }
 });
 
@@ -26,11 +26,11 @@ router.get('/', auth, async (req, res) => {
     try {
         const convs = await Conversation.find({ members: req.userId })
             .populate('lastMessage')
-            .sort({ updateAt: -1 });
+            .sort({ updatedAt: -1 });
         res.json(convs);
     } catch (error) {
         console.error(error);
-        res.json(500).json({ message: 'Server Error' });
+        res.status(500).json({ message: 'Server Error' });
     }
 });
 
@@ -38,17 +38,17 @@ router.get('/', auth, async (req, res) => {
 router.get('/:id/messages', auth, async (req, res) => {
     const convId =  req.params.id;
     const limit = parseInt(req.query.limit, 10) || 20;
-    const page = parseInt(req.query.limit, 10) || 0;
+    const page = parseInt(req.query.page, 10) || 0;
     try {
         const msgs = await Message.find({ conversationId: convId })
-            .sort({ createAt: -1 })
+            .sort({ createdAt: -1 })
             .skip(page * limit)
             .limit(limit)
             .populate('sender', 'username avatarUrl');
         res.json(msgs.reverse());
     } catch (error) {
         console.error(error);
-        res.json(500).json({ message: 'Server Error' });
+        res.status(500).json({ message: 'Server Error' });
     }
 });
 
@@ -66,7 +66,7 @@ router.post('/:id/messages', auth, async (req, res) => {
         res.json(populated);
     } catch (error) {
         console.error(error);
-        res.json(500).json({ message: 'Server Error' });
+        res.status(500).json({ message: 'Server Error' });
     }
 });
 

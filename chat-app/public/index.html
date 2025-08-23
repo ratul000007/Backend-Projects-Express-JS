@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat App</title>
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+</head>
+<body>
+  <h2>Login / Register</h2>
+  <input id="username" placeholder="username">
+  <input id="email" placeholder="email (for register)">
+  <input id="password" type="password" placeholder="password">
+  <button onclick="register()">Register</button>
+  <button onclick="login()">Login</button>
+  <hr>
+
+  <h2>Conversations</h2>
+  <div id="conversations"></div>
+
+  <h2>Chat</h2>
+  <div id="chat"></div>
+  <input id="message" placeholder="Type message">
+  <button onclick="sendMessage()">Send</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
